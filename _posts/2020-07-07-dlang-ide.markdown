@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "DLangIDE and DLangGUI"
+date:   2020-07-07 14:26:00 +0900
+categories: dlang
+---
+
+D 언어의 GUI 관련을 살펴보다가 DLANGIDE라는 것을 발견했다.
+그리 크지 않은 코드로 좋은 기능을 구현하고 있기에 살펴보다가
+CJK 언어가 표시 되지 않는 것을 알았다.
+
+DLangIDE가 사용하는 DLangGUI라는 GUI 라이브러리를 살펴 보자.

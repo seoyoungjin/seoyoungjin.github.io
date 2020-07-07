@@ -1,0 +1,56 @@
+---
+layout: post
+title:  "D unicode"
+date:   2020-07-07 13:46:00 +0900
+categories: dlang
+---
+
+{% highlight d %}
+import std.range.primitives : empty, front, popFront;
+import std.stdio : write, writeln;
+
+void main()
+{
+    string utf8 = "å ø ∑ 😦";
+    wstring utf16 = "å ø ∑ 😦";
+    dstring utf32 = "å ø ∑ 😦";
+
+    writeln("utf8 length: ", utf8.length);
+    writeln("utf16 length: ", utf16.length);
+    writeln("utf32 length: ", utf32.length);
+
+    foreach (item; utf8)
+    {
+        auto c = cast(ubyte) item;
+        write(c, " ");
+    }
+    writeln();
+
+    foreach (wchar item; utf16)
+    {
+        auto c = cast(ushort) item;
+        write(c, " ");
+    }
+    writeln();
+
+    foreach (dchar item; utf32)
+    {
+        auto c = cast(ulong) item;
+        write(c, " ");
+    }
+    writeln();
+
+    // a result of auto-decoding
+    static assert( is(typeof(utf8[0]) == immutable(char)));
+    static assert( is(typeof(utf8.front) == dchar));
+}
+{% endhighlight %}
+
+```ext
+utf8 length: 14
+utf16 length: 8
+utf32 length: 7
+195 165 32 195 184 32 226 136 145 32 240 159 152 166 
+229 32 248 32 8721 32 55357 56870 
+229 32 248 32 8721 32 128550 
+```
