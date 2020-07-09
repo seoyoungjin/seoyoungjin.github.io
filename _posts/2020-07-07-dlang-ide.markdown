@@ -20,3 +20,26 @@ CJK 텍스가 widget에 잘못 들어갔는지 아니면 제대로 들어 있는
 
  ![DLangIDE CJK 텍스트](/image/dlangide-editor.png)
  ![DLangIDE 터미널 복사](/image/terminal-cjk-paste.png)
+
+# dlangui의 FontManager 문제
+
+윈에을 파악을 위해 window에서 Visual Studio와 Mono를 설치하고
+컴파일 하는데 잘 안된다. 글자가 너무 작아 읽기 어렵다. :-(
+
+fontconfig를 사용하는데 D2Coding 글꼴이 검색되지 않아
+다음과 같이 하드코딩 후 예제 프로그램을 실행했 보았다.
+
+한글은 표시되는데 글자들이 겹쳐 나온다.
+
+{% highlight d %}
+    extern(C) bool initFontManager() {
+        FreeTypeFontManager ft = new FreeTypeFontManager();
+
+        ft.registerFont("/usr/share/fonts/truetype/naver-d2coding/D2Coding-Ver1.3.2-20180524-all.ttc",
+            FontFamily.MonoSpace, "D2Coding", false, FontWeight.Normal, true);
+
+    ...
+{% endhighlight %}
+
+ ![DLangUI CJK 텍스트 1](/image/dlangui-cjk1.png)
+ ![DLangUI CJK 텍스트 2](/image/dlangui-cjk2.png)
