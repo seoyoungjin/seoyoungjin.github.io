@@ -20,8 +20,8 @@ CJK 텍스가 widget에 잘못 들어갔는지 아니면 제대로 들어 있는
 한글이 포함된 파일을 열고 내용을 복사해서 터미널에 붙였을때
 다음과 같이 한글을 볼 수 있었다.
 
- ![DLangIDE CJK 텍스트](../image/dlangide-editor.png)
- ![DLangIDE 터미널 복사](../image/terminal-cjk-paste.png)
+ ![DLangIDE CJK 텍스트](/image/dlangide-editor.png)
+ ![DLangIDE 터미널 복사](/image/terminal-cjk-paste.png)
 
 # dlangui의 FontManager 문제
 
@@ -45,5 +45,5 @@ fontconfig를 사용하는데 D2Coding 글꼴이 검색되지 않아
     ...
 {% endhighlight %}
 
- ![DLangUI CJK 텍스트 1](../image/dlangui-cjk1.png)
- ![DLangUI CJK 텍스트 2](../image/dlangui-cjk2.png)
+ ![DLangUI CJK 텍스트 1](/image/dlangui-cjk1.png)
+ ![DLangUI CJK 텍스트 2](/image/dlangui-cjk2.png)
