@@ -1,33 +1,37 @@
 ---
 layout: post
-title:  "DLangIDE and DLangGUI"
+title:  "DLangIDE and DLangUI"
 date:   2020-07-07 14:26:00 +0900
-categories: dlang
+categories: dlangui
 ---
 
-D 언어의 GUI 관련을 살펴보다가 DLANGIDE라는 것을 발견했다.
+D 언어의 GUI 관련을 살펴보다가 DLangIDE라는 것을 발견했다.
 그리 크지 않은 코드로 좋은 기능을 구현하고 있기에 살펴보다가
 CJK 언어가 표시 되지 않는 것을 알았다.
 
-DLangIDE가 사용하는 DLangGUI라는 GUI 라이브러리를 살펴 보자.
+DLangIDE가 사용하는 DLangUI라는 GUI 라이브러리에 문제가 있다.
+사용자는 적지만 의미가 있는 라이브러리 같아 보여 멀티 바이트 문자를
+지원하게 수정해 보기로 했다.
 
 # text 유효성 검사
 
 CJK 텍스가 widget에 잘못 들어갔는지 아니면 제대로 들어 있는데
 폰트 설정 등의 이유로 표시만 잘못 되는지 테스트 했다.
-한글이 포함된 파일을 열고 내용을 복사해서 터미널에 붙여을때
+한글이 포함된 파일을 열고 내용을 복사해서 터미널에 붙였을때
 다음과 같이 한글을 볼 수 있었다.
 
- ![DLangIDE CJK 텍스트](/image/dlangide-editor.png)
- ![DLangIDE 터미널 복사](/image/terminal-cjk-paste.png)
+ ![DLangIDE CJK 텍스트](../image/dlangide-editor.png)
+ ![DLangIDE 터미널 복사](../image/terminal-cjk-paste.png)
 
 # dlangui의 FontManager 문제
 
-윈에을 파악을 위해 window에서 Visual Studio와 Mono를 설치하고
-컴파일 하는데 잘 안된다. 글자가 너무 작아 읽기 어렵다. :-(
+윈인 파악을 위해 Window에서 Visual Studio와 Mono를 설치하고
+컴파일 하는데 잘 안되지 않는다. 에러 메시지 글자가 너무 작아 읽기 어렵다. :-(
+Mac은 Linux와 거의 같을 것으로 보여 따로 시도하지는 않고 Linux에서
+디버깅 해보기로 한다.
 
 fontconfig를 사용하는데 D2Coding 글꼴이 검색되지 않아
-다음과 같이 하드코딩 후 예제 프로그램을 실행했 보았다.
+다음과 같이 하드코딩 후 예제를 실행해 보았다.
 
 한글은 표시되는데 글자들이 겹쳐 나온다.
 
@@ -41,5 +45,5 @@ fontconfig를 사용하는데 D2Coding 글꼴이 검색되지 않아
     ...
 {% endhighlight %}
 
- ![DLangUI CJK 텍스트 1](/image/dlangui-cjk1.png)
- ![DLangUI CJK 텍스트 2](/image/dlangui-cjk2.png)
+ ![DLangUI CJK 텍스트 1](../image/dlangui-cjk1.png)
+ ![DLangUI CJK 텍스트 2](../image/dlangui-cjk2.png)
