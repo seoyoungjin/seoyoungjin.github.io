@@ -47,12 +47,15 @@ dub build --compiler=ldc2
 폰트 리스트에 한글이 나오지 않는 것도 수상하다.
 
 - DLangIDE 스크린샷
+
 ![DLangIDE on Windows](/image/dlangide_win.png)
 
 - DLangIDE 파일 선택 대화창
+
 ![DLangIDE File Open Dialog on Windows](/image/dlangide_fs_win.png)
 
 - DLangIDE 글꼴 선택
+
 ![DLangIDE Font Selection on Windows](/image/dlangide_font_win.png)
 
 # Notes
