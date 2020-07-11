@@ -32,7 +32,23 @@ set VCINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\V
 
 # dlangui의 한글
 
-![DLangUI CJK text on Windows](/image/dlang_windows_hello.png)
+![DLangUI CJK text on Windows](/image/dlangui_hello_win.png)
+
+# dlanggui 컴파일
+
+D 언어 문법이 바뀌어서 template과 iterator 관련 오류가 난다.
+Linux에서 ldc2로 컴파일이 잘 되었기 때문에 다음과 같이 ldc2로 컴파일 했다.
+```
+dub build --compiler=ldc2
+```
+이렇게 해도 깨끗하게 컴파일되지 않아 일단 몇군데 주석처리하고 실행 파일을 만들었다.
+
+윈도우에서는 한글이 잘 보일것이라는 예상과 달리 사각형으로 깨져서 나온다.
+폰트 리스트에 한글이 나오지 않는 것도 수상하다.
+
+![DLangIDE on Windows](/image/dlangide_win.png)
+![DLangIDE File Open Dialog on Windows](/image/dlangide_fs_win.png)
+![DLangIDE Font Selection on Windows](/image/dlangide_font_win.png)
 
 # Notes
 
