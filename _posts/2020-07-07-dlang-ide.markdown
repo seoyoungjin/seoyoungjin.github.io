@@ -6,36 +6,41 @@ categories: dlangui
 ---
 
 ### System and Tools Version
-- Ubuntu 20.04 LTS 
+
+- Ubuntu 20.04 LTS
 
 D 언어의 GUI 관련을 살펴보다가 DLangIDE라는 것을 발견했다.
 그리 크지 않은 코드로 좋은 기능을 구현하고 있기에 살펴보다가
 CJK 언어가 표시 되지 않는 것을 알았다.
-DLangIDE가 사용하는 DLangUI라는 GUI 라이브러리에 문제가 있다.
+DLangIDE는 같은 저자가 작성한 DLangUI라는 GUI 라이브러리를 사용하는데
+이 라이브러가 CJK 문자를 잘 처리하지 못하고 있었다.
 사용자는 적지만 의미가 있는 라이브러리 같아 보여 멀티 바이트 문자를
 지원하게 수정해 보기로 했다.
 
-# text 유효성 검사
+## text 유효성 검사
 
-CJK 글자가 widget에 잘못 들어갔는지 아니면 제대로 들어 있는데
+CJK 글자가 widget에 잘못 들어가 있는지 아니면 제대로 들어 있는데
 폰트 설정 등의 이유로 표시만 잘못 되는지 테스트 했다.
 한글이 포함된 파일을 열고 내용을 복사해서 터미널에 붙였을때
 다음과 같이 한글을 볼 수 있었다.
 
- ![DLangIDE CJK 텍스트](/image/dlangide-editor.png)
- ![DLangIDE 터미널 복사](/image/terminal-cjk-paste.png)
+이 정도면 그나마 다행이라고 할수 있다. 😍
 
-# dlangui의 FontManager 문제
+![DLangIDE CJK 텍스트](/image/dlangide-editor.png)
+![DLangIDE 터미널 복사](/image/terminal-cjk-paste.png)
+
+## dlangui의 FontManager 문제
 
 윈인 파악을 위해 Window에서 Visual Studio로 컴파일 하는데 잘 되지 않는다.
-에러 메시지 글자가 너무 작아 읽기 어렵다.
+에러 메시지가 너무 많고 글자가 너무 작은데 노안이 와서 읽기 힘들다. TT
 
-Linux에서는 fontconfig를 사용하는데 D2Coding 글꼴이 검색되지 않아
+Linux에서는 fontconfig 라이브러리를 사용하고 있어다.
+시스템에 설치되어 있는 D2Coding 글꼴이 폰트 리스트에 검색되지 않아
 다음과 같이 하드코딩 후 예제를 실행해 보았다.
 
 한글은 표시되는데 글자들이 겹쳐 나온다.
 
-{% highlight d %}
+```d
     extern(C) bool initFontManager() {
         FreeTypeFontManager ft = new FreeTypeFontManager();
 
@@ -43,7 +48,7 @@ Linux에서는 fontconfig를 사용하는데 D2Coding 글꼴이 검색되지 않
             FontFamily.MonoSpace, "D2Coding", false, FontWeight.Normal, true);
 
     ...
-{% endhighlight %}
+```
 
  ![DLangUI CJK 텍스트 1](/image/dlangui-cjk1.png)
  ![DLangUI CJK 텍스트 2](/image/dlangui-cjk2.png)
