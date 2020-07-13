@@ -147,6 +147,38 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
 
+## DLangUI FontManager
+
+다음 코드를 실행하니 이번에는 148개의 Face가 나온다. TT
+
+```d
+import dlangui.graphics.fonts;
+
+mixin APP_ENTRY_POINT;
+
+/// entry point for dlangui based application
+extern (C) int UIAppMain(string[] args) 
+{
+    FontFaceProps[] faces = FontManager.instance.getFaces();
+    writeln("Total fonts: ", faces.length);
+    for (auto i = 0; i < faces.length; ++i) {
+        writeln(i, " ", faces[i].face, " ", faces[i].family);
+    }
+    
+    return 0;
+}
+```
+
+```
+Total fonts: 148
+0 Ubuntu Mono MonoSpace
+1 KacstTitle SansSerif
+2 Abyssinica SIL SansSerif
+3 DejaVu Sans Mono MonoSpace
+4 KacstOffice SansSerif
+...
+```
+
 ## Windows의 경우
 
 Windows 8이 설치된 PC에 DLangUI 예제를 돌려보았다.
