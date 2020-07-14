@@ -9,7 +9,6 @@ int main()
     FcPattern *pat;
     FcFontSet *fs;
     FcObjectSet *os;
-    // FcChar8 *s;
     FcConfig *config;
     FcBool result;
     FcChar8 *directory = NULL;
@@ -30,11 +29,14 @@ int main()
 
    // show the fonts (debugging)
     pat = FcPatternCreate();
-    os = FcObjectSetBuild (FC_FAMILY, FC_STYLE, FC_LANG, (char *) 0);
+    FcPatternAddBool(pat, FC_SCALABLE, 1);
+    os = FcObjectSetBuild (FC_FILE, FC_WEIGHT, FC_FAMILY,
+            FC_SLANT, FC_SPACING, FC_INDEX, FC_STYLE, NULL);
     fs = FcFontList(config, pat, os);
     printf("Total fonts: %d\n", fs->nfont);
 
     for (i=0; fs && i < fs->nfont; i++) {
+        // FcChar8 *s;
         FcChar8 *file, *style, *family;
 
         FcPattern *font = fs->fonts[i];
@@ -43,12 +45,11 @@ int main()
         if (FcPatternGetString(font, FC_FAMILY, 0, &family) == FcResultMatch) {
             printf("Family: %s\n", family);
         }
-        if (FcPatternGetString(font, FC_STYLE, 0, &style) == FcResultMatch) {
-            printf("Style: %s\n", style);
-        }
-        // Note - FcPatternGetString(font, FC_FILE, 0, &file) returns 1
         if (FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch) {
             printf("File: %s\n", file);
+        }
+        if (FcPatternGetString(font, FC_STYLE, 0, &style) == FcResultMatch) {
+            printf("Style: %s\n", style);
         }
         // printf("Font: %s\n", s);
         // free(s);

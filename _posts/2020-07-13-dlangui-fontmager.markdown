@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "DLangUI FontManager"
+title:  "DLangUI FontManager and FontConfig"
 date:   2020-07-13 11:50:00 +0900
 categories: dlangui
 ---
@@ -36,13 +36,17 @@ FontManager 초기화 부분에서 글꼴을 나일해보니 다음과 갈았디
 
 ## libfontconfig 
 C 언어로 libfontconfig를 사용하여 다음 예제로 폰트 경로와 폰트 페이스를
-나열해 보았다. FontManager의 결과가 다른 것을 알 수 있다.
+나열해 보았다. 다음과 같이 총 75개의 경로와 449개의 글꼴이 나열되었다.
+
+FontManager의 결과와 다른데 제외된 글꼴 중에 D2Coding 글꼴이 들어있다.
+
+**그 이유는 DLangUI에서는 글꼴의 확장자를 검색하는데
+77개의 `.ttc` 글꼴과 35개의 `.t1` 글꼴이 제외되있다.**
 
 ```c
 {% include_relative fontlist.c %}
 ```
 
-다음과 같이 총 75개의 경로와 416개의 글꼴이 나열되었다.
 ```
 /usr/share/fonts
 /usr/local/share/fonts
@@ -65,64 +69,17 @@ C 언어로 libfontconfig를 사용하여 다음 예제로 폰트 경로와 폰�
 /usr/share/fonts/cmap/adobe-korea1
 /usr/share/fonts/opentype/malayalam
 /usr/share/fonts/opentype/mathjax
-/usr/share/fonts/opentype/noto
-/usr/share/fonts/opentype/urw-base35
-/usr/share/fonts/truetype/Gargi
-/usr/share/fonts/truetype/Gubbi
-/usr/share/fonts/truetype/Nakula
-/usr/share/fonts/truetype/Navilu
-/usr/share/fonts/truetype/Sahadeva
-/usr/share/fonts/truetype/Sarai
-/usr/share/fonts/truetype/abyssinica
-/usr/share/fonts/truetype/arphic
-/usr/share/fonts/truetype/dejavu
-/usr/share/fonts/truetype/droid
-/usr/share/fonts/truetype/fonts-beng-extra
-/usr/share/fonts/truetype/fonts-deva-extra
-/usr/share/fonts/truetype/fonts-gujr-extra
-/usr/share/fonts/truetype/fonts-guru-extra
-/usr/share/fonts/truetype/fonts-kalapi
-/usr/share/fonts/truetype/fonts-orya-extra
-/usr/share/fonts/truetype/fonts-telu-extra
-/usr/share/fonts/truetype/fonts-yrsa-rasa
-/usr/share/fonts/truetype/freefont
-/usr/share/fonts/truetype/kacst
-/usr/share/fonts/truetype/kacst-one
-/usr/share/fonts/truetype/lao
-/usr/share/fonts/truetype/lato
-/usr/share/fonts/truetype/liberation
-/usr/share/fonts/truetype/liberation2
-/usr/share/fonts/truetype/lohit-assamese
-/usr/share/fonts/truetype/lohit-bengali
-/usr/share/fonts/truetype/lohit-devanagari
-/usr/share/fonts/truetype/lohit-gujarati
-/usr/share/fonts/truetype/lohit-kannada
-/usr/share/fonts/truetype/lohit-malayalam
-/usr/share/fonts/truetype/lohit-oriya
-/usr/share/fonts/truetype/lohit-punjabi
-/usr/share/fonts/truetype/lohit-tamil
-/usr/share/fonts/truetype/lohit-tamil-classical
-/usr/share/fonts/truetype/lohit-telugu
-/usr/share/fonts/truetype/malayalam
+...
 /usr/share/fonts/truetype/naver-d2coding
 /usr/share/fonts/truetype/noto
-/usr/share/fonts/truetype/openoffice
-/usr/share/fonts/truetype/padauk
-/usr/share/fonts/truetype/pagul
-/usr/share/fonts/truetype/samyak
-/usr/share/fonts/truetype/samyak-fonts
-/usr/share/fonts/truetype/sinhala
-/usr/share/fonts/truetype/tibetan-machine
-/usr/share/fonts/truetype/tlwg
-/usr/share/fonts/truetype/ttf-khmeros-core
-/usr/share/fonts/truetype/ubuntu
+...
 /usr/share/fonts/type1/gsfonts
 /usr/share/fonts/type1/urw-base35
 /usr/share/fonts/X11/encodings/large
 ```
 
 ```
-Total fonts: 416
+Total fonts: 449
 Family: Samyak Malayalam
 ...
 ```
@@ -131,8 +88,6 @@ Family: Samyak Malayalam
 
 C로 예제를 만들다가 문뜩 어리석은 짓을 하고 있었다는 생각이 들었다.
 `python-fontconfig`라는 좋은 툴이 있었다.
-글꼴 숫자들이 다르게 나오는 것은 typeface와 lang 그리고 아마도
-글꼴의 형식이나 아니면 중복된 글꼴 때문이라고 짐작한다.
 
 ```
 [GCC 9.3.0] on linux2
@@ -147,9 +102,34 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
 
+`python-fontconfig` 소스를 살펴 보니 다음과 같았다.
+
+```
+    os = FcObjectSetBuild (FC_CHARSET, FC_FILE, NULL);
+```
+
+FC_FAMILY를 추가하면 447이라는 숫자가 나오고 FC_INDEX를 추가하면 449라는
+숫자가 나오는데 같은 파일이 중복되어 나타나는 것이었다.
+
+## 결론
+
+1. 실제 글꼴 파일의 숫자는 387개였다.
+2. FC_FAMILY 를 선택하면 하나의 글꼴안에 있는 여러개의 Family가 따로 나일되어서 447이 된다.
+```
+Noto Sans CJK HK : /usr/share/fonts/opentype/noto/NotoSansCJK-Black.ttc
+Noto Sans CJK TC : /usr/share/fonts/opentype/noto/NotoSansCJK-Black.ttc
+Noto Sans CJK KR : /usr/share/fonts/opentype/noto/NotoSansCJK-Black.ttc
+Noto Sans CJK JP : /usr/share/fonts/opentype/noto/NotoSansCJK-Black.ttc
+Noto Sans CJK SC : /usr/share/fonts/opentype/noto/NotoSansCJK-Black.ttc
+...
+D2Coding ligature : /usr/share/fonts/truetype/naver-d2coding/D2Coding-Ver1.3.2-20180524-all.ttc
+D2Coding : /usr/share/fonts/truetype/naver-d2coding/D2Coding-Ver1.3.2-20180524-all.ttc
+```
+2. FC_INDEX의 의미는 아직 잘 모르겠지만 D2Coding 글꼴에만 해당한다.
+
 ## DLangUI FontManager
 
-다음 코드를 실행하니 이번에는 148개의 Face가 나온다. TT
+다음과 같이 글꼴을 나열할 수 있다.
 
 ```d
 import dlangui.graphics.fonts;
