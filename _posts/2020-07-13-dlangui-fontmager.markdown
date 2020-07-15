@@ -8,7 +8,7 @@ categories: dlangui
 ### System and Tools Version
 
 - Ubuntu 20.04 LTS
-- DKabgUI 0.9.182 
+- DLangUI 0.9.182 
 
 ## FontManager Problem
 
