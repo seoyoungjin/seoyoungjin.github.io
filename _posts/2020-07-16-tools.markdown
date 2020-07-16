@@ -1,0 +1,79 @@
+---
+layout: post
+title:  Howto and Tools
+date:   2020-07-16 11:00:00 +0900
+categories: [ howto, tools ]
+---
+
+## git
+
+### git 초보를 위한 pull request 방법
+
+dlangui 소스를 fork 해서 clone 한 후 몇 번 commit 하다가
+이럴게 아니라 이것들을 원 저자한테 보내야겠다는 의욕이 생겼다.
+이걸 예전 내가 현역일때처럼 patch를 만들어서 보내려 하다가
+github에는 pull request라는 멋진 기능이 있다는 것을 알았다.
+
+다음 글을 읽어보니 처음에 remote 설정하고 branch를 만든 후
+그 branch에 commit을 했어야 됐나 보다.
+git 초심자에게 정말 큰 도움이 되었다. &#128525;
+
+> [git 초보를 위한 pull request 방법](https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/)
+
+다시 하게 될 경우를 위해 명령어를 적어둔다.
+
+```
+1. 원본 github로 가서 fork 한다.
+2. git clone https://github.com/seoyoungjin/dlangui.git
+
+   $ git remote -v
+   origin	https://github.com/seoyoungjin/dlangui.git (fetch)
+   origin	https://github.com/seoyoungjin/dlangui.git (push)
+
+3. git remote add buggins https://github.com/buggins/dlangui.git
+
+   $ git remote -v
+   buggins	https://github.com/buggins/dlangui.git (fetch)
+   buggins	https://github.com/buggins/dlangui.git (push)
+   origin	https://github.com/seoyoungjin/dlangui.git (fetch)
+   origin	https://github.com/seoyoungjin/dlangui.git (push)
+
+4. git checkout -b seoyoungjin
+   Switched to a new branch 'seoyoungjin'
+
+   $ git branch
+     master
+   * seoyoungjin
+
+5. add, commit and push
+
+   $git push origin seoyoungjin
+
+6. Pull Request 생성
+   github 저장소에 들어가 활성화된 "Compare & pull reqeust" 버튼을 클릭한다.
+7. PR을 받은 원저자가 code review 후 merge 여부를 결정한다.
+8. merge 이후 동기화 및 branch 삭제
+
+   git pull buggins
+   git branch -d seoyoungjin
+```
+
+#### 의문점
+
+1. 5에서 push할 경우 꼭 branch 명을 써줘야 하는가? `*`가 seoyungjin branch에 있는데...
+2. 8에서 꼭 branch 없애야 하나? 계속 작업해 나가도 될 것 같은데...
+
+
+### 원격 저장소에 올라간 커밋 되돌리기
+
+> [원격 저장소에 올라간 커밋 되돌리기](https://jupiny.com/2019/03/19/revert-commits-in-remote-repository/)
+
+## DUB
+
+
+
+## Tools
+
+- cmder (windows)
+- fzf, ripgrep
+
