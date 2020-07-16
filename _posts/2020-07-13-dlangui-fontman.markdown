@@ -163,6 +163,10 @@ Total fonts: 148
 
 Windows 8이 설치된 PC에 DLangUI 예제를 돌려보았다.
 `ui.log` 파일을 보면 다음과 같이 286개의 골꼴을 볼 수 있다.
+그런데 이 문자열이 현재 locale에 따른 EUC-KR 문자라
+D의 string 함수로 utf8 변환하면서 exception이 났다.
+win32의 관련 함수를 호출하도록 patch 하니 글꼴 이를을
+제데로 볼 수 있었고 또 이 글꼴을 사용할 수가 있었다.
 
 ```
 DlangUI log file
@@ -192,3 +196,6 @@ DlangUI log file
 ### Korean Text Buttun on Windows
 
 ![Korean Text Button](/image/dlangui_hello_ko_win.png)
+
+### Korean Face Name on Windows
+![Korean Font Face Name](/screenshot/dfontview/20200716_gungseo_win.png)

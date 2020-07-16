@@ -68,10 +68,3 @@ mododevelop으로 컴파일 하는 설명이 많아 monodevelop을 설치하려�
 예전 바이너리 버전은 어디서 받는지 알수 없고 최신 버전은 source로만 배포한다.
 소스를 받아 컴파일하려고 시도하니 너무 많은 오류가 난다.
 초심자가 할 일은 아니것 같다.
-
-### useful dub usage
-
-```
-dub describe -c unittest --nodeps --skip-registry=all --arch=x86_64
-dub --arch=x86_64 --build=debug
-```

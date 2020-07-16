@@ -60,7 +60,19 @@ git 초심자에게 정말 큰 도움이 되었다. &#128525;
 
 #### 의문점
 
-1. 5에서 push할 경우 꼭 branch 명을 써줘야 하는가? `*`가 seoyungjin branch에 있는데...
+1. 5에서 push할 경우 `*`가 있는데 꼭 branch 명을 써줘야 하는가?
+그냥 해보니 다음과 같은 오류가 난다.
+upstream을 지정해야 한다고 하는데 새로운 용어라 머리에 쥐가 난다.
+샛길로 새지 말고 branch명을 적어야 하는걸로 알고 넘어간다.
+```
+$ git push
+fatal: 현재 브랜치 seoyoungjin에 업스트림 브랜치가 없습니다.
+현재 브랜치를 푸시하고 해당 리모트를 업스트림으로 지정하려면
+다음과 같이 하십시오.
+
+    git push --set-upstream origin seoyoungjin
+```
+
 2. 8에서 꼭 branch 없애야 하나? 계속 작업해 나가도 될 것 같은데...
 
 
@@ -70,7 +82,12 @@ git 초심자에게 정말 큰 도움이 되었다. &#128525;
 
 ## DUB
 
+### useful dub usage
 
+```
+dub describe -c unittest --nodeps --skip-registry=all --arch=x86_64
+dub --arch=x86_64 --build=debug
+```
 
 ## Tools
 

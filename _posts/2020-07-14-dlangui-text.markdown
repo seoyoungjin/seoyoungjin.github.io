@@ -76,4 +76,6 @@ D 언어에서 utf8 로 변환하는 중에 exception이 난다는 점이다.
 ligature는 처리할 수가 없다. D2Coding 글꼴이 ligature를 지원한다고 하는데
 조금 더 살펴보자.
 
+이마 HarfBuzz나 Raqm 갈은 라이브러리를 사용해야 할것 같다.
+
 ![ D2Cdding Ligature ](/image/20200714_d2ligature.png)
