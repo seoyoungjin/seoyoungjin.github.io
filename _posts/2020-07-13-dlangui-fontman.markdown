@@ -193,9 +193,6 @@ DlangUI log file
 2020-07-12 17:20:07.845 I  Found 285 font faces
 ```
 
-### Korean Text Buttun on Windows
-
-![Korean Text Button](/image/dlangui_hello_ko_win.png)
-
 ### Korean Face Name on Windows
+
 ![Korean Font Face Name](/screenshot/dfontview/20200716_gungseo_win.png)
