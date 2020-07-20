@@ -1,10 +1,15 @@
 ---
 title:  Howto and Tools
 date:   2020-07-16 11:00:00 +0900
+last_modified_at: 2018-07-20 20:00:00 +0900
+toc: true
 categories:
   - howto
-  - tools
+  - git
+  - jekyll
 ---
+
+자주 사용하는 tool의 간략한 사용법이나 설정 등을 적는다.
 
 ## git
 
@@ -64,8 +69,9 @@ git 초심자에게 정말 큰 도움이 되었다. &#128525;
 1. 5에서 push할 경우 `*`가 있는데 꼭 branch 명을 써줘야 하는가?
 그냥 해보니 다음과 같은 오류가 난다.
 upstream을 지정해야 한다고 하는데 새로운 용어라 머리에 쥐가 난다.
-샛길로 새지 말고 branch명을 적어야 하는걸로 알고 넘어간다.
-```
+branch명을 적어야 하는걸로 알고 넘어간다.
+
+```bash
 $ git push
 fatal: 현재 브랜치 seoyoungjin에 업스트림 브랜치가 없습니다.
 현재 브랜치를 푸시하고 해당 리모트를 업스트림으로 지정하려면
@@ -76,7 +82,6 @@ fatal: 현재 브랜치 seoyoungjin에 업스트림 브랜치가 없습니다.
 
 2. 8에서 꼭 branch 없애야 하나? 계속 작업해 나가도 될 것 같은데...
 
-
 ### 원격 저장소에 올라간 커밋 되돌리기
 
 > [원격 저장소에 올라간 커밋 되돌리기](https://jupiny.com/2019/03/19/revert-commits-in-remote-repository/)
@@ -85,7 +90,7 @@ fatal: 현재 브랜치 seoyoungjin에 업스트림 브랜치가 없습니다.
 
 ### useful dub usage
 
-```
+```bash
 dub describe -c unittest --nodeps --skip-registry=all --arch=x86_64
 dub --arch=x86_64 --build=debug
 ```
@@ -93,5 +98,15 @@ dub --arch=x86_64 --build=debug
 ## Tools
 
 - cmder (windows)
-- fzf, ripgrep
+- fzf
+- ripgrep
 
+## Jekyll, Minimal Mistakes theme and Github page
+
+적당한 jekyll 테마를 고르기 위해 여러 가지 글을 읽고 jekyll theme 관련
+ruby 패키지도 설치해 봤는데 의존성 문제로 잘 되지 않았다.
+여러번 시도끝에 `minimal-mistakes` 테마를 사용하기로 한다.
+
+다음 사이트 참고하여 설치 및 설정한다.
+
+- [minimal mistakes 테마를 이용해 github.io 블로그 구축하기](https://imreplay.com/blogging/minimal-mistakes-테마를-이용해-githubio-블로그-구축하기/)
