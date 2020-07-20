@@ -1,8 +1,8 @@
 ---
-layout: post
 title:  "DLangUI OpenGL"
 date:   2020-07-11 10:00:00 +0900
-categories: dlangui
+categories:
+  - dlangui
 ---
 
 ## Compile error

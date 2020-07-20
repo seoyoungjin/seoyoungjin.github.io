@@ -1,11 +1,15 @@
 ---
-layout: post
 title:  "D unicode"
 date:   2020-07-07 13:46:00 +0900
-categories: dlang
+last_modified_at: 2020-07-07 13:46:00 +0900
+categories:
+  - dlang
+tags:
 ---
 
-{% highlight d %}
+D language unicode test
+
+```D
 import std.range.primitives : empty, front, popFront;
 import std.stdio : write, writeln;
 
@@ -44,7 +48,7 @@ void main()
     static assert( is(typeof(utf8[0]) == immutable(char)));
     static assert( is(typeof(utf8.front) == dchar));
 }
-{% endhighlight %}
+```
 
 ```ext
 utf8 length: 14

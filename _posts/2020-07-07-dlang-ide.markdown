@@ -1,8 +1,8 @@
 ---
-layout: post
 title:  "DLangIDE and DLangUI"
 date:   2020-07-07 14:26:00 +0900
-categories: dlangui
+categories:
+  - dlangui
 ---
 
 ### System and Tools Version

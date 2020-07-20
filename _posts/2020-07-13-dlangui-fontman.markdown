@@ -1,8 +1,8 @@
 ---
-layout: post
 title:  "DLangUI FontManager and FontConfig"
 date:   2020-07-13 11:50:00 +0900
-categories: dlangui
+categories:
+  - dlangui
 ---
 
 ### System and Tools Version

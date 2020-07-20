@@ -1,8 +1,8 @@
 ---
-layout: post
 title:  DLangUI Text Rendering
 date:   2020-07-14 17:00:00 +0900
-categories: dlangui
+categories:
+  - dlangui
 ---
 
 ### System and Tools Version

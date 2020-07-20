@@ -1,8 +1,8 @@
 ---
-layout: post
 title:  "DLangUI on Windows"
 date:   2020-07-10 10:00:00 +0900
-categories: dlangui
+categories:
+  - dlangui
 ---
 
 ### System and Tools Version
@@ -67,4 +67,3 @@ dub build --compiler=ldc2
 mododevelop으로 컴파일 하는 설명이 많아 monodevelop을 설치하려고 시도했다.
 예전 바이너리 버전은 어디서 받는지 알수 없고 최신 버전은 source로만 배포한다.
 소스를 받아 컴파일하려고 시도하니 너무 많은 오류가 난다.
-초심자가 할 일은 아니것 같다.
