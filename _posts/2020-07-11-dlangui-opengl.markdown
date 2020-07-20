@@ -41,7 +41,7 @@ DerelictGL3 의 간단한 샘플을 돌려보려고 했더니 그동안 배열 �
 
 - GLFW 예제 실행 화면
 
-![GLFW sample](/image/dlang_glfw.png)
+![GLFW sample](/screenshot/dlang_glfw.png)
 
 ## Derelict 패키지 버전 문제
 

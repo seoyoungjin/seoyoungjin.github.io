@@ -33,7 +33,7 @@ set VCINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\V
 
 ## dlangui의 한글
 
-![DLangUI CJK text on Windows](/image/dlangui_hello_win.png)
+![DLangUI CJK text on Windows](/screenshot/dlangui_hello_win.png)
 
 ## DLangIDE 컴파일
 
@@ -50,15 +50,15 @@ dub build --compiler=ldc2
 
 - DLangIDE 스크린샷
 
-![DLangIDE on Windows](/image/dlangide_win.png)
+![DLangIDE on Windows](/screenshot/dlangide_win.png)
 
 - DLangIDE 파일 선택 대화창
 
-![DLangIDE File Open Dialog on Windows](/image/dlangide_fs_win.png)
+![DLangIDE File Open Dialog on Windows](/screenshot/dlangide_fs_win.png)
 
 - DLangIDE 글꼴 선택
 
-![DLangIDE Font Selection on Windows](/image/dlangide_font_win.png)
+![DLangIDE Font Selection on Windows](/screenshot/dlangide_font_win.png)
 
 ## Notes
 

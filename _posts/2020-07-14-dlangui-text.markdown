@@ -78,4 +78,4 @@ ligature는 처리할 수가 없다. D2Coding 글꼴이 ligature를 지원한다
 
 이마 HarfBuzz나 Raqm 갈은 라이브러리를 사용해야 할것 같다.
 
-![ D2Cdding Ligature ](/image/20200714_d2ligature.png)
+![ D2Cdding Ligature ](/screenshot/20200714_d2ligature.png)

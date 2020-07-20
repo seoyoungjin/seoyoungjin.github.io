@@ -26,8 +26,8 @@ CJK 글자가 widget에 잘못 들어가 있는지 아니면 제대로 들어 �
 
 이 정도면 그나마 다행이라고 할수 있다. 😍
 
-![DLangIDE CJK 텍스트](/image/dlangide-editor.png)
-![DLangIDE 터미널 복사](/image/terminal-cjk-paste.png)
+![DLangIDE CJK 텍스트](/screenshot/dlangide-editor.png)
+![DLangIDE 터미널 복사](/screenshot/terminal-cjk-paste.png)
 
 ## dlangui의 FontManager 문제
 
@@ -50,5 +50,5 @@ Linux에서는 fontconfig 라이브러리를 사용하고 있어다.
     ...
 ```
 
- ![DLangUI CJK 텍스트 1](/image/dlangui-cjk1.png)
- ![DLangUI CJK 텍스트 2](/image/dlangui-cjk2.png)
+ ![DLangUI CJK 텍스트 1](/screenshot/dlangui-cjk1.png)
+ ![DLangUI CJK 텍스트 2](/screenshot/dlangui-cjk2.png)
