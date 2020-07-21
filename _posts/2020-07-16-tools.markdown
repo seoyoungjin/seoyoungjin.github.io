@@ -95,13 +95,7 @@ dub describe -c unittest --nodeps --skip-registry=all --arch=x86_64
 dub --arch=x86_64 --build=debug
 ```
 
-## Tools
-
-- cmder (windows)
-- fzf
-- ripgrep
-
-## Jekyll, Minimal Mistakes theme and Github page
+## Jekyll & Minimal Mistakes theme
 
 적당한 jekyll 테마를 고르기 위해 여러 가지 글을 읽고 jekyll theme 관련
 ruby 패키지도 설치해 봤는데 의존성 문제로 잘 되지 않았다.
@@ -110,3 +104,14 @@ ruby 패키지도 설치해 봤는데 의존성 문제로 잘 되지 않았다.
 다음 사이트 참고하여 설치 및 설정한다.
 
 - [minimal mistakes 테마를 이용해 github.io 블로그 구축하기](https://imreplay.com/blogging/minimal-mistakes-테마를-이용해-githubio-블로그-구축하기/)
+
+나중에 다음 테마도 고려해 보자
+
+ - prologue
+ - jasper2
+
+## Tools
+
+- cmder (windows)
+- fzf
+- ripgrep
