@@ -1,20 +1,23 @@
 ---
-title: FontManager Debug
+title: DLangUI Font Debug
 date:  2020-07-21 15:00:00 +0900
-last_modified_at:   2020-07-21 15:00:00 +0900
+last_modified_at: 2020-07-21 20:00:00 +0900
 categories:
   - dlangui
+  - font
   - freetype
-  - python
 ---
 
-몇 가지 글꼴로 글자를 그리다가 오류를 만났다.
+글자를 그리다가 몇 가지 글꼴에서 오류를 만났다.
 
 ## Noto Color Emoji 글꼴
 
 Noto Color Emoji 글꼴의 경우 `FT_Set_Pixel_Sizes` 함수에서
 에러 23번이 나서 글꼴을 가져오지 못하는데 그 글꼴을 사용하기 때문에 죽는다.
-디버깅할때 C 보다는 python 코드로 여러번 시도해 보는게 도움이 되었다.
+Noto Color Emoji 글꼴은 fixed size 글꼴이서서 확대 촉소가 되지 않는데
+글꼴 선택 목록에 잘못 나타난 것 같다.
+
+디버깅은 python 코드로 여러번 시도해 보는게 도움이 되었다.
 
 ```py
 >>> import freetype
@@ -40,7 +43,7 @@ freetype.ft_errors.FT_Exception: FT_Exception:  (invalid pixel size)
 []
 ```
 
-NotoMono 글꼴로 같은 code를 실행하면 다음과 같다.
+같은 code를 NotoMono 글꼴로 실행하면 다음과 같다.
 
 ```py
 >>> import freetype
@@ -55,9 +58,6 @@ True
 ...
 ```
 
-Noto Color Emoji 글꼴은 fixed size 글꼴이서서 확대 촉소가 되지 않는데
-글꼴 선택 목록에 잘못 나타난 것 같다.
-
 ### Noto Color Emoji with Gtk FontManager
 
 FontManager 에서 Noto Color Emoji 글꼴을 볼수 있다.
@@ -65,9 +65,24 @@ FontManager 에서 Noto Color Emoji 글꼴을 볼수 있다.
 
 ![Noto Color Emoji with FontManager](/screenshot/noto_color_emoji.png)
 
-## 고정폭 글꼴 계산 오류
+## 고정폭 여백 넓이 계산 오류
 
+MathJax_Vector, MathJax_Vector-Bold 글꼴에서 tabSize가 0이 다음 코드에서
+프로그램이 죽는다.
 
+```D
+ 248         int tabWidth = spWidth * tabSize; // width of full tab in pixels
+ 249         tabOffset = tabOffset % tabWidth;
+```
+
+원인을 찾아보나 `Font::measureText()` 함수에서 fixedCharWidth, spaceWidth 등으로
+tabSize를 계산하는데 MathJax_Vector 글꼴의 경우 다음 조건으로 tabSize 가 0이 된다.
+
+```D
+charWidth('i') = 0
+charWidth('M') = 0
+charWidth(' ') = 0
+```
 
 ## 기타
 
