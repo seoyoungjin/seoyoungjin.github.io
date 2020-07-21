@@ -53,7 +53,7 @@ git 초심자에게 정말 큰 도움이 되었다. &#128525;
 
 5. add, commit and push
 
-   $git push origin seoyoungjin
+   git push origin seoyoungjin
 
 6. Pull Request 생성
    github 저장소에 들어가 활성화된 "Compare & pull reqeust" 버튼을 클릭한다.
@@ -80,7 +80,11 @@ fatal: 현재 브랜치 seoyoungjin에 업스트림 브랜치가 없습니다.
     git push --set-upstream origin seoyoungjin
 ```
 
-2. 8에서 꼭 branch 없애야 하나? 계속 작업해 나가도 될 것 같은데...
+2. 8에서 꼭 branch 없애야 하나?
+
+원 저자가 PR을 리뷰하지 않은 경우"Compare ..." 단추가 활성화되 않고
+후속 작업이 계속 PR에서 보인다.
+따라서 별도의 작업은 다른 브랜치에서 하는게 좋을것 같다.
 
 ### 원격 저장소에 올라간 커밋 되돌리기
 
@@ -107,8 +111,8 @@ ruby 패키지도 설치해 봤는데 의존성 문제로 잘 되지 않았다.
 
 나중에 다음 테마도 고려해 보자
 
- - prologue
- - jasper2
+- prologue
+- jasper2
 
 ## Tools
 
