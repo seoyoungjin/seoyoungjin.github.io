@@ -16,8 +16,8 @@ categories:
 선택했는데 돌려주는 글꼴의 이름을 출력해 보니 다른 글꼴이었다.
 
 ```d
-        FontRef font = FontManager.instance.getFont(25, FontWeight.Normal,
-            false, FontFamily.SansSerif, "D2Coding");
+    FontRef font = FontManager.instance.getFont(25, FontWeight.Normal,
+        false, FontFamily.SansSerif, "D2Coding");
 ```
 
 FontManager 초기화 부분에서 글꼴을 나일해보니 다음과 갈았디.
@@ -196,3 +196,8 @@ DlangUI log file
 ### Korean Face Name on Windows
 
 ![Korean Font Face Name](/screenshot/dfontview/20200716_gungseo_win.png)
+
+참고로 현재 DLangUI는 win32의 `EnumFontFamiliesExA` 계열 함수를 사용하는데
+DirectWrite 라이브리를 사용하면 글꼴에 대해 좀 더 많은 정보를 얻을 수 있을 것 같다.
+
+- https://github.com/foliojs/font-manager
