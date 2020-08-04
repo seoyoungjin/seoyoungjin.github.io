@@ -20,7 +20,7 @@ Gnome 일부 어플리케이션에서 윈도우 타이틀에 메뉴와 아이콘
 
 - GtkHeaderBar 위젯
 
-![CSD 예제](https://en.wikipedia.org/wiki/Client-side_decoration#/media/File:GtkHeaderBar_on_GNOME_Files_--_2014-01.png)
+![CSD 예제](http://www.kcjengr.com/assets/posts/2017-09-29-gtk-headerbar/light-theme.png)
 
 ## Text Input on Windows
 
