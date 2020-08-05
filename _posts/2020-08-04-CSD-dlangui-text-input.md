@@ -48,13 +48,15 @@ KeyDown and Text event comes with one key down
 
 ## Text Input on Linux
 
-Linux에서는 Windows와 다르게 위젯의 keyEvent로는 조합중의
-keyEvent나 조합 중의 한글도 오지 않고 이상한 글자가 찍한다.
-DLangUI core나 xcb 백엔드에서 뭔가 잘못하고 있다. TT
+Linux에서도 비슷한데 뭔가 다른 코드가 온다. TT
 
 ```
-2020-08-04 13:35:37.652 D  keyEvent code = 75 action = KeyDown
-2020-08-04 13:35:43.175 D  keyEvent code = 160 action = KeyDown
-2020-08-04 13:35:51.529 D  keyEvent code = 160 action = KeyDown
-2020-08-04 13:35:52.687 D  keyEvent code = 65 action = KeyDown
+2020-08-05 14:05:50.404 D  onKeyEvent KeyDown 65 flags 0
+2020-08-05 14:05:50.404 D  onKeyEvent Text 0 flags 0
+2020-08-05 14:05:50.404 D  text entered: 97
+2020-08-05 14:05:51.775 D  onKeyEvent KeyDown 160 flags 8194
+2020-08-05 14:05:56.770 D  onKeyEvent Text 0 flags 0
+2020-08-05 14:05:56.771 D  text entered: 12593
+2020-08-05 14:06:00.921 D  onKeyEvent KeyDown 160 flags 8194
+2020-08-05 14:06:02.033 D  onKeyEvent KeyDown 13 flags 0
 ```
