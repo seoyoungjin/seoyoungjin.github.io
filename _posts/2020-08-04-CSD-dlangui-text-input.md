@@ -1,7 +1,7 @@
 ﻿---
 title: CSD and DLangUI Text Input
-date:  2020-08-24 12:00:00 +0900
-last_modified_at: 2020-08-24 12:00:00 +0900
+date:  2020-08-04 12:00:00 +0900
+last_modified_at: 2020-08-04 12:00:00 +0900
 categories:
   - CSD
   - dlangui
@@ -59,4 +59,12 @@ Linux에서도 비슷한데 뭔가 다른 코드가 온다. TT
 2020-08-05 14:05:56.771 D  text entered: 12593
 2020-08-05 14:06:00.921 D  onKeyEvent KeyDown 160 flags 8194
 2020-08-05 14:06:02.033 D  onKeyEvent KeyDown 13 flags 0
+```
+
+## 참고 자료
+
+윈도우 IMM 처리는 다음을 참고하자.
+
+```c
+{% include_relative ime_input.cc %}
 ```

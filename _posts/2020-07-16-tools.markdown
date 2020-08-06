@@ -119,3 +119,6 @@ ruby 패키지도 설치해 봤는데 의존성 문제로 잘 되지 않았다.
 - cmder (windows)
 - fzf
 - ripgrep
+- multitail : 로그 볼때
+- pinta : paint.net 비슷한 c#으로 작성한 페인트 프로그램
+- Agnoster Theme for Bash
