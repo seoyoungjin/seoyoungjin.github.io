@@ -6,7 +6,7 @@ categories:
   - font fallback
 ---
 
-선택한 글꼴 아닌 다른 글꼴로 대체(fallbak)하는 경우는 거의 다음 두가지 영우이다.
+선택한 글꼴 아닌 다른 글꼴로 대체(fallbak)하는 경우는 거의 다음 두가지 경우이다.
 
 - 선택한 글꼴시 시스템에 설치되지 않았다.
 - 선택한 글꼴에 빈 부분이 있어서 그리고자 하는 글자가 없다.
@@ -53,6 +53,5 @@ Input Method and wayland
 =========================
 
 한 10년쯤 들여다 보지 않아 텍스트 입력 쪽은 잘 되었겠거니 했었는데 아직도 문제가 많나 보다.
-밤에 자기 전에 다음 블로그를 읽고 잠자리기 편찮았다. TT
 
 [텍스트 입력기로 본 Wayland의 현주소](https://medium.com/@parkjoonkyu/%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%9E%85%EB%A0%A5%EA%B8%B0%EB%A1%9C-%EB%B3%B8-wayland%EC%9D%98-%ED%98%84%EC%A3%BC%EC%86%8C-130ac441de7a)
