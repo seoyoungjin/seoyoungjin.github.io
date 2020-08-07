@@ -152,6 +152,8 @@ File -> Preferences -> Settings -> Text Editor -> Font -> Font Family  에서 'D
 ## Tools
 
 - cmder (windows)
+  1. Bitstream Verra Sans Mono, D2Coding
+  2. 글자 간격이 이상한 것은 lambda가 가변이라서라고 한다. `vendor/clink.lua` 에서 적당히 수정한다.
 - fzf
 - ripgrep
 - multitail : 로그 볼때
