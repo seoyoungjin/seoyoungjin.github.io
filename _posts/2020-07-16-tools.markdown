@@ -90,6 +90,14 @@ fatal: 현재 브랜치 seoyoungjin에 업스트림 브랜치가 없습니다.
 
 > [원격 저장소에 올라간 커밋 되돌리기](https://jupiny.com/2019/03/19/revert-commits-in-remote-repository/)
 
+### git submodule
+
+```
+git submodule add https://github.com/huntlabs/hunt-markdown.git deps/HuntMarkdown
+git submodule update --init --recursive --remote
+git submodule deinit -f .
+```
+
 ## DUB
 
 ### useful dub usage
