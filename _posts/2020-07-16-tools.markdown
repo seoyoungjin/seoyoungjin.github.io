@@ -97,6 +97,25 @@ fatal: 현재 브랜치 seoyoungjin에 업스트림 브랜치가 없습니다.
 ```bash
 dub describe -c unittest --nodeps --skip-registry=all --arch=x86_64
 dub --arch=x86_64 --build=debug
+dub run --debug=DebugSDL
+dub run --debug=KeyInput
+```
+
+**DFontView를 DLangUI/x11 backend로 컴파일 한는 법**
+
+dlangui를 config를 지정해서 컴파일해도 dfontview 컴파일할때 default config로 다시 컴파일한다.
+dfontview의 `dub.json`에서 다음과 같이 지정해야 한다.
+
+```
+{
+   ...
+    "dependencies": {
+        "dlangui": { "path": "../dlangui" }
+    },
+    "subConfigurations": {
+        "dlangui": "x11"
+    }
+}
 ```
 
 ## Jekyll & Minimal Mistakes theme
@@ -113,6 +132,14 @@ ruby 패키지도 설치해 봤는데 의존성 문제로 잘 되지 않았다.
 
 - prologue
 - jasper2
+
+## VSCode
+
+우분투에서 VSCode 사용시 한글 입력이 정상적으로 되지 않을때 해결방법
+
+File -> Preferences -> Settings -> Text Editor -> Font -> Font Family  에서 'Droid Sans Fallback' 을 제거한다.
+
+출처: https://smok95.tistory.com/283 [Only YOUng]
 
 ## Tools
 

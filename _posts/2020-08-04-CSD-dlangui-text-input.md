@@ -1,7 +1,7 @@
 ﻿---
 title: CSD and DLangUI Text Input
 date:  2020-08-04 12:00:00 +0900
-last_modified_at: 2020-08-04 12:00:00 +0900
+last_modified_at: 2020-08-07 12:00:00 +0900
 categories:
   - CSD
   - dlangui
@@ -60,6 +60,13 @@ Linux에서도 비슷한데 뭔가 다른 코드가 온다. TT
 2020-08-05 14:06:00.921 D  onKeyEvent KeyDown 160 flags 8194
 2020-08-05 14:06:02.033 D  onKeyEvent KeyDown 13 flags 0
 ```
+
+조금 더 조사하니 Linux에서 DLangUI는 x11 백엔드도 있지만 SDL2  백엔드를
+한번 거쳐서 입력기와 통신하고 있었다. X11 백엔드는 IM에 대해 전혀 처리를
+하지 않고 있다. 이제부터는 두가지 방향으로 시도해 보자.
+
+1. SDL 간단히 분석
+2. SDL 레이어 거치지 않이 제데로 입력 context 관리를 DLangUI에서 하도록
 
 ## 참고 자료
 
