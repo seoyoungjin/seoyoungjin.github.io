@@ -48,10 +48,3 @@ Arch Linux fontconfig
 
 [Arch Linux Font configuration](https://wiki.archlinux.org/index.php/Font_configuration)
 
-
-Input Method and wayland
-=========================
-
-한 10년쯤 들여다 보지 않아 텍스트 입력 쪽은 잘 되었겠거니 했었는데 아직도 문제가 많나 보다.
-
-[텍스트 입력기로 본 Wayland의 현주소](https://medium.com/@parkjoonkyu/%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%9E%85%EB%A0%A5%EA%B8%B0%EB%A1%9C-%EB%B3%B8-wayland%EC%9D%98-%ED%98%84%EC%A3%BC%EC%86%8C-130ac441de7a)

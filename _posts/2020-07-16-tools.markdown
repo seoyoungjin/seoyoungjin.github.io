@@ -98,6 +98,12 @@ git submodule update --init --recursive --remote
 git submodule deinit -f .
 ```
 
+### git gui 인코딩
+
+```
+git config --global gui.encoding utf-8
+```
+
 ## DUB
 
 ### useful dub usage
