@@ -1,7 +1,7 @@
 ---
 title:  Howto and Tools
 date:   2020-07-16 11:00:00 +0900
-last_modified_at: 2018-07-20 20:00:00 +0900
+last_modified_at: 2020-09-04 20:00:00 +0900
 toc: true
 categories:
   - howto
@@ -164,4 +164,4 @@ File -> Preferences -> Settings -> Text Editor -> Font -> Font Family  에서 'D
 - ripgrep
 - multitail : 로그 볼때
 - pinta : paint.net 비슷한 c#으로 작성한 페인트 프로그램
-- Agnoster Theme for Bash
+- bat : A Cat Clone With Syntax Highlighting And Git Integration
