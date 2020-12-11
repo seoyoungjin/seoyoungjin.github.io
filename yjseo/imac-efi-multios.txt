@@ -1,0 +1,93 @@
+https://zapary.blogspot.com/2014/08/apple-mac-efi-multi-os-install.html
+
+Apple Mac에서 EFI Multi-OS 설치
+
+최근의 Apple Intel-Mac PC 들은 UEFI 표준을 따르지는 않더라도 UEFI를 지원하는 OS 들을 EFI 모드로 쉽게 설치해서 사용할 수 있다. 예전부터 Mac에서는 Windows 설치를 지원하기 위해 Boot Camp를 지원해 왔으나 이것은 EFI 방식이 아니고 CSM BIOS emulation 방식을 이용한 것이었다. 이러다 보니 Ubuntu 조차도 Mac(AMD 64) iso 설치 이미지를 따로 제공하고 있는데 BIOS 모드로 설치할 수 있도록 하기 위한 것이다.
+
+여기서는 Mac OS X가 설치된 Mac PC에서 EFI 모드로 Windows와 Ubuntu를 설치하여 Triple-OS 환경을 구성하는 방법에 대해 알아 본다. Mac은 모델이나 출시 연도에 따라서 H/W가 달라질 수 있지만 적어도 최근 2~3년 내의 기종들은 모델에 상관없이 이 글에서 언급하는 내용이 적용될 것이다. 물론, 개별 드라이버들을 별개로 설치해야 할 수도 있으나 대부분은 기본 OS 설치 만으로도 사용할 수 있는 수준이다. 즉, iMac, Macbook Pro (retina), Macbook Air, Mac Mini 등에 모두 적용할 수 있다.
+
+OS를 EFI 모드로 설치하려면 H/W에서 당연히 UEFI/EFI를 지원해야 하고 OS도 UEFI를 지원하는 것들이어야 한다. Mac OS X는 기본으로 EFI 모드로 설치 되어 있고, Ubuntu는 12.04.2 이후, Windows는 Vista 이후 64-bit 버전들에 대해서만 UEFI를 지원한다. 세부 사항은 UEFI Booting을 참고하는 것이 좋다.
+
+1. Disk Partition
+
+Mac OS X에서 Disk Utility를 이용해서 Windows와 Ubuntu 설치를 위한 파티션 공간을 미리 확보한다. OS가 모두 설치된 후에 특정 OS의 파티션 Tool을 이용하여 파티션 변경을 할 경우, 변경하지 않은 다른 OS의 파티션 정보가 변경될 수 있다. OS간 파티션을 다루는 방식이 다룰 수 있기 때문이다. 파티션 정보가 변경되면 뜻하지 않게 Mac OS X를 포함한 특정 OS로는 부팅할 수 없는 상황이 생길 수 있다. gdisk 등을 이용하여 파티션 테이블을 백업해 두면 쉽게 극복할 수 있는 문제이기는 하다.
+
+가장 좋은 방법은 사전에 파티션 계획을 잘 세워서 파티션을 변경하지 않도록 하는 것이다. 경험상, OS 별로 최소한 OS 파티션과 Data 파티션은 구분해 두는 것이 좋다. 나중에 OS 버전 업 등 OS 재설치시에 Clean Install을 쉽게 할 수 있기 때문이다. 그리고, OS가 지속적으로 Upgrade 됨을 감안하여 OS 파티션을 넉넉히 잡아 주는 것이 좋다. SSD만을 사용하는 경우에는 용량 부족으로 다소 제약이 생길 수는 있다. 참고로, Mac OS X는 50GB, Windows 7+은 60GB, Ubuntu는 20GB 정도는 최소 OS 파티션으로 잡아 주는 것이 좋다. 디스크 용량 제한이 없으면 OS 파티션은 모두 100GB 정도면 된다.
+
+이제 UEFI 환경에서 OS 별로 필요한 파티션 들에 대해 대해서도 미리 생각해 둘 필요가 있다. (U)EFI 방식에서는 GPT 파티션 방식을 따른다. Mac OS X에서는 기본적으로 ESP(EFI System Partition)을 확보해 두고 있다. 아래에, Triple-OS에 대한 기본 파티션들을 열거 하였다. 즉, Triple OS를 위한 기본 파티션 갯수만 8개이다.
+공유: ESP 파티션 (OS 별 boot loader 탑재)
+Mac OS X: OS 파티션, MacData 파티션
+Windows: OS 파티션, WinData 파티션
+Ubuntu: OS 파티션, UbuntuData 파티션, swap 파티션
+ESP 파티션과 Mac OS X 파티션을 제외한 나머지 파티션들을 Disk Utiltity를 이용하여 파티션닝한다. Mac Data 파티션과 swap 파티션을 제외한 나머지 파티션 들은 모두 MS-DOS 파일시스템으로 해 두는게 편리하다.
+
+아래에 iMac 1TB 디스크에 Triple-OS 설치 후 파티션 정보를 예로 들었다. 12개의 파티션이 있는데 3번과 4번의 Recovery HD는 Mac OS X Upgrade 시 Mac OS X 파티션을 쪼개서 자동으로 Recovery 파티션을 만든 것이고, 5번 파티션도 Windows 설치시 자동으로 생성한 파티션이다. 위에서 8개 + 3개 하면 11개여야 하는데 12개인 이유는 디스크 공간이 넉넉하기 때문에 리눅스 Data 파티션을 1개 더 만든 것이다.
+
+$ sudo parted /dev/sda print
+Model: ATA APPLE HDD ST1000 (scsi)
+Disk /dev/sda: 1000GB
+Sector size (logical/physical): 512B/4096B
+Partition Table: gpt
+
+Number  Start   End     Size    File system     Name                          Flags
+ 1      20.5kB  210MB   210MB   fat32           EFI system partition          boot
+ 2      210MB   99.6GB  99.3GB  hfsx            Apple_HFSX_Untitled_2
+ 3      99.6GB  100GB   650MB   hfs+            Recovery HD
+ 4      100GB   101GB   650MB   hfs+            Recovery HD
+ 5      101GB   101GB   134MB                   Microsoft reserved partition  msftres
+ 6      101GB   311GB   210GB   ntfs            Basic data partition          msftdata
+ 7      311GB   520GB   210GB   ntfs            Basic data partition          msftdata
+ 8      520GB   620GB   100GB   ext4
+ 9      620GB   720GB   100GB   ext4
+10      720GB   736GB   16.0GB  linux-swap(v1)
+11      736GB   894GB   157GB   ext4
+12      894GB   1000GB  107GB   hfs+            Apple HFS/HFS+
+
+2. EFI 모드로 Windows 설치
+
+Mac에서 EFI 모드로 Windows를 설치하려면 Mac OS X의 Boot Camp를 사용해선 안된다. Boot Camp는 BIOS 모드로 부팅한다는 점 외에도 디스크 파티션 테이블을 Hybrid-MBR 방식으로 구성하므로 GPT 파티션 방식의 장점을 훼손하게 되고 파티션 변경에 매우 민감한 구조가 되어 Windows로 부팅하지 못하는 사태가 발생될 수 있다.
+
+Windows 설치 iso를 USB로 굽되 Windows 8+인 경우 Rufus를 사용하여 uefi & gpt 방식으로 구워야 한다. 또한, Apple 홈페이지에서 Boot Camp 드라이버를 검색해서 미리 내려 받아서 USB에 복사해 둘 필요가 있다. 이 때, Boot Camp 드라이버가 자신의 Mac 모델과 반드시 일치해야 함에 유의한다.
+
+Mac을 부팅하여 Option 키를 눌렀을 때 USB의 Windows EFI를 선택하여 부팅하면 되고, 설치시에 Windows OS 파티션과 Data 파티션을 모두 ntfs로 다시 포맷하는 것이 좋다. 설치 과정은 Windows 일반 설치 과정과 동일하다. Windows 설치가 완전히 끝난 후 Boot Camp 드라이버를 설치하면 Boot Camp 제어판을 이용해 Mac OS X로도 부팅할 수 있다.
+
+3. EFI 모드로 Ubuntu 설치
+
+우분투 사이트에서 Mac AMD가 아닌 일반 AMD 64-bit iso 이미지를 내려 받아서 Rufus를 이용해서 uefi & gpt 방식으로 굽는다(uefi & mbr 방식으로 구워도 된다). 또는, 앞서 작성한 게시물인 Ubuntu UEFI 모드 설치 USB 만들기를 따라해도 된다.
+
+Mac을 부팅하여 Option 키를 눌렀을 때 USB의 EFI를 선택하여 부팅하면 되고, 설치 후 개별 드라이버들이 정상 동작하지 않을 경우가 있으므로 Ubuntu live 상태에서 기능들을 점검해 보는 것이 좋다. 적어도 live 상태에서 개별 드라이버에 문제가 없다면 설치 후 해당 드라이버 들의 문제는 쉽게 해결할 수 있다.
+
+설치 시에 Linux 파티션을 OS와 Data 파티션을 ext4 파일시스템으로 포맷하면 된다. 앞서 생성한 우분투의 Data 파티션은 /home에 마운트 하도록 하고, 앞서 생성한 swap 파티션도 swap 파티션으로 지정한다. 나머지 설치 과정은 일반 우분투 설치 과정과 동일하다.
+
+설치까지는 문제 없는데 설치 후 재 부팅해서 우분투로 부팅할 수 있는 방법이 아직 없다.
+
+4. Triple-OS booting
+
+Mac에서 Multi-OS booting이 가능하도록 하기 위한 가장 간단한 방법은 Mac OS X로 부팅하여 rEFInd나 rEFIt를 설치하는 것이다. rEFIt는 개발이 중단되었으므로 rEFInd를 사용하는 것이 좋다. 설치 후 Mac을 재부팅하면 rEFInd boot manager가 OS별 boot loader를 선택할 수 있도록 해준다.
+
+rEFInd를 사용하지 않고 Mac 자체의 boot manager를 이용해서 Triple-OS booting 하는 방법에 대해서는 별도의 게시물인 Apple Mac에서 Multi-OS Booting을 참조하면 된다.
+
+5. Ubuntu 개별 드라이버 설치
+
+Mac에서 우분투 개별 드라이버 이슈를 알기 위해서는 다음 명령으로 Mac Model을 알 필요가 있다.
+
+$ sudo dmidecode -s system-product-name
+
+iMac13,2에서는 일단, WIFI가 문제였다. 다음 명령으로 WIFI 모델을 알 수 있다.
+
+$ lspci -nn -d 14e4:
+
+Broadcom BCM4331 모델인데 live USB에서 Broadcom proprietary driver가 정상 동작하는 것을 확인하였으므로, 우분투 live USB의 deb 패키지 파일을 복사해서 설치했다. 그리고, 설치하는 김에 kernel 업그레이드시 자동으로 모듈을 재설치할 수 있도록 dkms도 같이 설치했다.
+
+$ sudo dpkg -i dkms_2.2.0.3-1.1ubuntu5_all.deb
+$ sudo dpkg -i bcmwl-kernel-source_6.30.223.141+bdcom-0ubuntu2_amd64.deb
+
+$ sudo depmod -a
+$ sudo update-initramfs -c -k `uname -r`
+$ sudo reboot
+
+NVIDIA 드라이버의 경우 기본 설치된 nouveau도 화면 보호기가 제때 동작하지 않는 것을 제외하면 큰 문제는 없었으나 3D 가속기능을 사용하기 위해 proprietary driver를 사용하기로 했다. 문제는 우분투의 기본 드라이버는 정상 동작하지 않았다. NVIDIA 모델을 알기 위해서는 다음 명령을 사용하면 된다.
+
+$ lspci | grep -i nvidia
+
+NVIDIA에서 노트북용 GTX 675MX 최신 드라이버를 내려 받아서 설치했더니 그럭저럭 돌아간다. 사실, 약간의 문제가 있는데 일부 application에서 화면 떨림 현상이 잠깐씩 발생한다. 그리고, <Alt>+<Ctrl>+<F1> ~ <F5>를 눌러 Console 모드로 진입하면 black screen이 뜬다. 다행히, <Alt>+<F7> 키로 GUI로 되돌아 올 수는 있다. NVIDIA 드라이버 설치 방법은 Ubuntu 복구 모드(recovery mode) 활용을 참조하면 된다.
