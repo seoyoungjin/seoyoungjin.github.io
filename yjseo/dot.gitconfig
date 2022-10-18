@@ -1,0 +1,12 @@
+[user]
+	name = Seo Youngjin
+	email = yjinseo@gmail.com
+[core]
+	editor = vim
+[redential]
+	helper = store
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
