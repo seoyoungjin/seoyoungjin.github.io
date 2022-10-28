@@ -1,9 +1,8 @@
 set smartindent
-set tabstop=4
-set expandtab
-set shiftwidth=4
+set ts=4 sw=4 expandtab
 
 if has("gui_running")
+    colorscheme delek
     se go-=T
     se go+=m
     "behave mswin
