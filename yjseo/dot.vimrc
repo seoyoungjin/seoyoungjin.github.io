@@ -3,7 +3,6 @@ set tabstop=4
 set expandtab
 set shiftwidth=4
 
-colorscheme molokai
 if has("gui_running")
     se go-=T
     se go+=m
