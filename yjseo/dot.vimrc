@@ -1,8 +1,8 @@
 set smartindent
 set ts=4 sw=4 expandtab
 
+colorscheme molokai
 if has("gui_running")
-    colorscheme delek
     se go-=T
     se go+=m
     "behave mswin
@@ -17,3 +17,9 @@ if has("gui_running")
 else
     colorscheme default
 endif
+
+call plug#begin('~/.vim/plugged')
+  Plug 'preservim/nerdtree'
+  Plug 'timonv/vim-cargo'
+  Plug 'rust-lang/rust.vim'
+call plug#end()
