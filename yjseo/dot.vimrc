@@ -1,8 +1,17 @@
 set smartindent
 set ts=4 sw=4 expandtab
 
-colorscheme molokai
+call plug#begin()
+    Plug 'preservim/nerdtree'
+    Plug 'jremmen/vim-ripgrep'
+call plug#end()
+
+let g:rg_command = 'rg --vimgrep -S'
+noremap <F7> :<C-U>cprevious<CR>
+noremap <F8> :<C-U>cnext<CR>
+
 if has("gui_running")
+    colorscheme desert
     se go-=T
     se go+=m
     "behave mswin
@@ -17,9 +26,3 @@ if has("gui_running")
 else
     colorscheme default
 endif
-
-call plug#begin('~/.vim/plugged')
-  Plug 'preservim/nerdtree'
-  Plug 'timonv/vim-cargo'
-  Plug 'rust-lang/rust.vim'
-call plug#end()
